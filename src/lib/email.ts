@@ -1,6 +1,14 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy-initialized to avoid build errors when env var is missing
+let resend: Resend | null = null
+
+function getResendClient() {
+    if (!resend && process.env.RESEND_API_KEY) {
+        resend = new Resend(process.env.RESEND_API_KEY)
+    }
+    return resend
+}
 
 interface SendEmailParams {
     to: string
@@ -16,10 +24,15 @@ export async function sendEmail({ to, subject, html, from }: SendEmailParams) {
         return { success: false, error: 'Email service not configured. Please add RESEND_API_KEY to .env' }
     }
 
+    const client = getResendClient()
+    if (!client) {
+        return { success: false, error: 'Failed to initialize email client' }
+    }
+
     try {
         console.log('Sending email to:', to, 'subject:', subject)
 
-        const { data, error } = await resend.emails.send({
+        const { data, error } = await client.emails.send({
             from: from || 'CRM Pro <onboarding@resend.dev>',
             to: [to],
             subject,
@@ -54,3 +67,4 @@ export function parseTemplate(template: string, variables: Record<string, string
     }
     return result
 }
+
