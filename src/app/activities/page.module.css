@@ -1,0 +1,237 @@
+.activityStats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.activityStat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+}
+
+.statIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statIconPending {
+    background: var(--info-bg);
+    color: var(--info);
+}
+
+.statIconToday {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-primary);
+}
+
+.statIconOverdue {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.statIconCompleted {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.statContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.statValue {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.statLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.activitiesContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+}
+
+.activitiesSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.activitiesList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.activityItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md) !important;
+}
+
+.activityItemOverdue {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.activityItemCompleted {
+    opacity: 0.6;
+}
+
+.activityCheckbox {
+    padding-top: 2px;
+}
+
+.activityTypeIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.activityContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.activityHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+}
+
+.activityActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.activityTitle {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.activityTitleCompleted {
+    text-decoration: line-through;
+    color: var(--text-tertiary);
+}
+
+.activityTypeBadge {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+}
+
+.activityTypeBadgeCall {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.activityTypeBadgeEmail {
+    background: var(--info-bg);
+    color: var(--info);
+}
+
+.activityTypeBadgeMeeting {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-primary);
+}
+
+.activityTypeBadgeTask {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.activityDescription {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.5;
+}
+
+.activityMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.activityMetaItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.activityMetaItemOverdue {
+    color: var(--danger);
+}
+
+.completedList .activityItem {
+    padding: var(--space-sm) var(--space-md) !important;
+}
+
+.completedList .activityTitle {
+    font-size: 0.875rem;
+}
+
+.emptyState {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--text-muted);
+}
+
+.emptyState h4 {
+    margin-top: var(--space-md);
+    color: var(--text-secondary);
+}
+
+.emptyState p {
+    font-size: 0.875rem;
+}
+
+@media (max-width: 1024px) {
+    .activityStats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .activitiesContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .activityStats {
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id        Int       @id @default(autoincrement())
+  name      String
+  industry  String
+  website   String?
+  phone     String?
+  address   String?
+  logo      String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  contacts  Contact[]
+  deals     Deal[]
+}
+
+model Contact {
+  id         Int        @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  email      String     @unique
+  phone      String?
+  position   String?
+  avatar     String?
+  status     String     @default("active")
+  companyId  Int?
+  company    Company?   @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  deals      Deal[]
+  activities Activity[]
+  emailLogs  EmailLog[]
+  proposals  Proposal[]
+  invoices   Invoice[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Deal {
+  id            Int        @id @default(autoincrement())
+  title         String
+  value         Float
+  stage         String     @default("lead")
+  priority      String     @default("medium")
+  probability   Int        @default(20)
+  expectedClose DateTime?
+  description   String?
+  contactId     Int?
+  contact       Contact?   @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  companyId     Int?
+  company       Company?   @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  activities    Activity[]
+  proposals     Proposal[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model Activity {
+  id          Int      @id @default(autoincrement())
+  type        String
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  dueDate     DateTime?
+  contactId   Int?
+  contact     Contact? @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  dealId      Int?
+  deal        Deal?    @relation(fields: [dealId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model EmailTemplate {
+  id        Int        @id @default(autoincrement())
+  name      String
+  subject   String
+  body      String
+  type      String     @default("custom") // proposal, follow-up, welcome, custom
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  emailLogs EmailLog[]
+}
+
+model EmailLog {
+  id         Int            @id @default(autoincrement())
+  to         String
+  subject    String
+  body       String
+  status     String         @default("sent") // sent, failed
+  contactId  Int?
+  contact    Contact?       @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  templateId Int?
+  template   EmailTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  sentAt     DateTime       @default(now())
+}
+
+model Proposal {
+  id          Int            @id @default(autoincrement())
+  number      String         @unique // PRO-2024-001
+  title       String
+  description String?
+  status      String         @default("draft") // draft, sent, accepted, rejected
+  validUntil  DateTime?
+  notes       String?
+  subtotal    Float          @default(0)
+  discount    Float          @default(0)
+  total       Float          @default(0)
+  contactId   Int?
+  contact     Contact?       @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  dealId      Int?
+  deal        Deal?          @relation(fields: [dealId], references: [id], onDelete: SetNull)
+  items       ProposalItem[]
+  invoices    Invoice[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model ProposalItem {
+  id          Int      @id @default(autoincrement())
+  description String
+  quantity    Int      @default(1)
+  unitPrice   Float
+  total       Float
+  proposalId  Int
+  proposal    Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+}
+
+model Invoice {
+  id          Int           @id @default(autoincrement())
+  number      String        @unique // FAT-2025-001
+  title       String
+  status      String        @default("draft") // draft, sent, paid, overdue, cancelled
+  issueDate   DateTime      @default(now())
+  dueDate     DateTime?
+  paidDate    DateTime?
+  notes       String?
+  subtotal    Float         @default(0)
+  tax         Float         @default(0)   // IVA
+  taxRate     Float         @default(23)  // 23% default
+  discount    Float         @default(0)
+  total       Float         @default(0)
+  contactId   Int?
+  contact     Contact?      @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  proposalId  Int?
+  proposal    Proposal?     @relation(fields: [proposalId], references: [id], onDelete: SetNull)
+  items       InvoiceItem[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model InvoiceItem {
+  id          Int     @id @default(autoincrement())
+  description String
+  quantity    Int     @default(1)
+  unitPrice   Float
+  total       Float
+  invoiceId   Int
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,150 @@
+.settingsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.settingsCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    cursor: pointer;
+}
+
+.settingsIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.settingsContent {
+    flex: 1;
+}
+
+.settingsTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.settingsDescription {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+}
+
+.comingSoonBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    margin-left: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.languageButtons {
+    display: flex;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .settingsCard {
+        flex-wrap: wrap;
+    }
+
+    .languageButtons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+.toggleItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggleItem:hover {
+    background: var(--bg-tertiary);
+}
+
+.toggleItem input[type="checkbox"] {
+    width: 44px;
+    height: 24px;
+    appearance: none;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggleItem input[type="checkbox"]:checked {
+    background: var(--accent-primary);
+}
+
+.toggleItem input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: all 0.2s ease;
+}
+
+.toggleItem input[type="checkbox"]:checked::before {
+    left: 23px;
+}
+
+.exportItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.helpItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.helpItem svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.helpItem kbd {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin: 0 2px;
+}

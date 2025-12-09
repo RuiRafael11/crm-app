@@ -1,0 +1,204 @@
+.pipelineBoard {
+    display: flex;
+    gap: var(--space-sm);
+    overflow-x: auto;
+    padding-bottom: var(--space-lg);
+    min-height: calc(100vh - 200px);
+}
+
+.pipelineColumn {
+    flex: 1 1 180px;
+    min-width: 180px;
+    max-width: 240px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-sm);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.pipelineHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.pipelineTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stageIndicator {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+}
+
+.pipelineCount {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+}
+
+.pipelineValue {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
+.pipelineCards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.dealCard {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.dealCard:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.dealCardHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.dealCardTitle {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.dealCardActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.priorityIndicator {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.priorityHigh {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.priorityMedium {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.priorityLow {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.dealCardCompany {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-sm);
+}
+
+.dealCardValue {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--success);
+    margin-bottom: var(--space-md);
+}
+
+.dealCardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
+.dealContact {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.dealDate {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.probabilityBar {
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--space-xs);
+}
+
+.probabilityFill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+.probabilityLabel {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.emptyColumn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    min-height: 100px;
+}
+
+@media (max-width: 768px) {
+    .pipelineColumn {
+        flex: 0 0 280px;
+    }
+}

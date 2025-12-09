@@ -1,0 +1,166 @@
+.companiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: var(--space-lg);
+}
+
+.companyCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.companyHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
+.cardActions {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.companyLogo {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.companyLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.companyBody {
+    flex: 1;
+}
+
+.companyName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.industryBadge {
+    display: inline-flex;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+}
+
+.companyDetails {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.companyDetail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.companyDetail:hover {
+    color: var(--accent-primary);
+}
+
+.companyDetail span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.companyStats {
+    display: flex;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+}
+
+.companyStat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.statIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statIconContacts {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-primary);
+}
+
+.statIconDeals {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.statInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.statValue {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.statLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.companyFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--glass-border);
+}
+
+.pipelineInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.pipelineLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.pipelineValue {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--success);
+}
+
+@media (max-width: 768px) {
+    .companiesGrid {
+        grid-template-columns: 1fr;
+    }
+}

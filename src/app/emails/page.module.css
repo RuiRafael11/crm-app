@@ -1,0 +1,145 @@
+.emailsPage {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.emailsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+}
+
+@media (max-width: 1024px) {
+    .emailsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.templatesSection,
+.logsSection {
+    min-height: 400px;
+}
+
+.templatesList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.templateCard {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.templateCard:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.templateCardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-sm);
+}
+
+.templateName {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.templateType {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+.templateSubject {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.templateActions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.logsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.logItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+}
+
+.logIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logIconSent {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.logIconFailed {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.logContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.logTo {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.logSubject {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logTime {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}
+
+.emptyState {
+    text-align: center;
+    padding: var(--space-2xl);
+    color: var(--text-muted);
+}
+
+.emptyStateIcon {
+    opacity: 0.5;
+    margin-bottom: var(--space-md);
+}
