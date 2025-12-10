@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import ContactsView from '@/components/ContactsView'
 
+export const dynamic = 'force-dynamic'
+
 async function getContactsData() {
   const [contacts, companies] = await Promise.all([
     prisma.contact.findMany({

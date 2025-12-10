@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import InvoicesView from '@/components/InvoicesView'
 
+export const dynamic = 'force-dynamic'
+
 async function getInvoicesData() {
     const [invoices, contacts, proposals] = await Promise.all([
         prisma.invoice.findMany({

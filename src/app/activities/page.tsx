@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import ActivitiesView from '@/components/ActivitiesView'
 
+export const dynamic = 'force-dynamic'
+
 async function getActivitiesData() {
   const [activities, contacts, deals] = await Promise.all([
     prisma.activity.findMany({

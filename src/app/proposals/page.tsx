@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import ProposalsView from '@/components/ProposalsView'
 
+export const dynamic = 'force-dynamic'
+
 async function getProposalsData() {
     const [proposals, contacts, deals] = await Promise.all([
         prisma.proposal.findMany({

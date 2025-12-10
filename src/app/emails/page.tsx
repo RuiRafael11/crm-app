@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import EmailsView from '@/components/EmailsView'
 
+export const dynamic = 'force-dynamic'
+
 async function getEmailData() {
     const [templates, logs, contacts] = await Promise.all([
         prisma.emailTemplate.findMany({
