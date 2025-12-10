@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
 // GET all companies
 export async function GET() {
@@ -35,8 +36,11 @@ export async function POST(request: NextRequest) {
                 logo: body.logo || null,
             },
         })
+        revalidatePath('/companies')
+        revalidatePath('/')
         return NextResponse.json(company, { status: 201 })
     } catch (error) {
         return NextResponse.json({ error: 'Failed to create company' }, { status: 500 })
     }
 }
+

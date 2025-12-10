@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
 // GET all deals
 export async function GET() {
@@ -38,9 +39,12 @@ export async function POST(request: NextRequest) {
                 company: true,
             },
         })
+        revalidatePath('/deals')
+        revalidatePath('/')
         return NextResponse.json(deal, { status: 201 })
     } catch (error) {
         console.error('Error creating deal:', error)
         return NextResponse.json({ error: 'Failed to create deal' }, { status: 500 })
     }
 }
+

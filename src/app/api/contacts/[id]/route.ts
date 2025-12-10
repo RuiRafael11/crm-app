@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
 // GET single contact
 export async function GET(
@@ -58,6 +59,8 @@ export async function PUT(
                 company: true,
             },
         })
+        revalidatePath('/contacts')
+        revalidatePath('/')
         return NextResponse.json(contact)
     } catch (error) {
         console.error('Error updating contact:', error)
@@ -79,9 +82,12 @@ export async function DELETE(
         await prisma.contact.delete({
             where: { id: numericId },
         })
+        revalidatePath('/contacts')
+        revalidatePath('/')
         return NextResponse.json({ success: true })
     } catch (error) {
         console.error('Error deleting contact:', error)
         return NextResponse.json({ error: 'Failed to delete contact' }, { status: 500 })
     }
 }
+

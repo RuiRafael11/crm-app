@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 
 // GET all contacts
 export async function GET() {
@@ -42,9 +43,12 @@ export async function POST(request: NextRequest) {
                 company: true,
             },
         })
+        revalidatePath('/contacts')
+        revalidatePath('/')
         return NextResponse.json(contact, { status: 201 })
     } catch (error) {
         console.error('Error creating contact:', error)
         return NextResponse.json({ error: 'Failed to create contact' }, { status: 500 })
     }
 }
+
